@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: order-serivce
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/oauth?useUnicode=true&characterEncoding=UTF-8&characterSetResults=utf8&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+logging:
+  level:
+    web: debug
+
+server:
+  servlet:
+    session:
+      timeout: 3000
+    context-path: /order
+  port: 8081
