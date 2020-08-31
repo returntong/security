@@ -29,7 +29,7 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resource/**").hasAuthority("EDIT_PATROL")
                 /*.antMatchers("/order/**").hasAuthority("EDIT_PATROL")*/
                 .anyRequest().permitAll() //其他所有请求都不需要验证
-                .and().formLogin();
+                .and().formLogin().successForwardUrl("/test/login");//登录成功后访问该路径
 
     }
 
