@@ -11,7 +11,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login() {
-        return "hahaha";
+        return "登录成功";
     }
 
 
