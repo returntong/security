@@ -28,9 +28,9 @@ import java.util.Arrays;
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     // 授权码模式需要
-/*    @Autowired
-    private AuthorizationCodeServices authorizationCodeServices;*/
-
+  /*  @Autowired
+    private AuthorizationCodeServices authorizationCodeServices;
+*/
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -41,7 +41,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     DataSource dataSource;
 
     // 设置 jwt 秘钥
-    private static final  String SIGNINGKEY= "maimai";
+    private static final String SIGNINGKEY = "maimai";
 
     //配置令牌端点的安全服务
     @Override
@@ -54,13 +54,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     //配置客户端详情服务
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-      /*  clients.inMemory().withClient("c1") //client_id 用来标识客户的id
+  /*clients.inMemory().withClient("c1") //client_id 用来标识客户的id
                 .secret(passwordEncoder.encode("secret")) //client_secret 客户端秘钥
                 .resourceIds("res1") //设置资源服务器id
                 .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token") //客户端可以使用的授权类型，默认为空
                 .scopes("all") // 用来限制客户端的访问范围，如果为空（默认）那么客户端拥有全部的访问范围
                 .autoApprove(true); //false 如果是授权码模式，必须同意后才发放令牌。true 无需同意，默认自动发放*/
+
         clients.withClientDetails(clientDetailsService()); //从数据库获取
+//        clients.jdbc(dataSource);
     }
 
     //初始化一个 clientDetailsService
@@ -113,10 +115,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
 
-  /*  @Bean
-    public AuthorizationCodeServices authorizationCodeServices() { //设置授权码模式的授权码如何存取，暂时采用内存方式
-        return new InMemoryAuthorizationCodeServices();
-    }*/
-
+   /* @Bean
+    public AuthorizationCodeServices authorizationCodeServices(DataSource dataSource) { //设置授权码模式的授权码如何存取，暂时采用内存方式
+        return new JdbcAuthorizationCodeServices(dataSource);
+    }
+*/
 
 }

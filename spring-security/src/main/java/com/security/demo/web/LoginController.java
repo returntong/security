@@ -14,5 +14,4 @@ public class LoginController {
         return "登录成功";
     }
 
-
 }

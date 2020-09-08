@@ -71,7 +71,21 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--远程仓库sso-->
+        <dependency>
+            <groupId>com.ey.cn</groupId>
+            <artifactId>sso-sdk</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
+    <!--配置远程仓库-->
+    <repositories>
+        <repository>
+            <id>local</id>
+            <name>local</name>
+            <url>http://106.12.151.32:8083/repository/maven-public/</url>
+        </repository>
+    </repositories>
     <dependencyManagement>
         <dependencies>
             <dependency>
